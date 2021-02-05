@@ -17,7 +17,7 @@ border-width: 2px;
 }
 
 nav{
-    margin: 0px auto;
+    margin: 10px auto;
     display: flex;
     align-items: center;
     justify-content: center;
