@@ -1,16 +1,60 @@
-const outputElement1 = document.querySelector("#weather");
+{
+  let weatherUrl = new URL("https://api.openweathermap.org/data/2.5/weather");
 
-getWeatherURL = function (cityName) {
-  const url = new URL("https://api.openweathermap.org/data/2.5");
+  weatherUrl.searchParams.set("q", "Huntingburg");
+  weatherUrl.searchParams.set("appid", "07666263ed3ccc84e4b232450fe32cc1");
+  weatherUrl.searchParams.set("mode", "json");
+  weatherUrl.searchParams.set("units", "metric");
+  weatherUrl.searchParams.set("lang", "se");
 
-  url.searchParams.append("q", cityName);
-  url.searchParams.append("appid", "07666263ed3ccc84e4b232450fe32cc1");
-  url.searchParams.append("mode", "json");
-  url.searchParams.append("units", "metric");
-  url.searchParams.append("lang", "sv");
+  document.querySelector("#weatherToday").innerText = weatherUrl;
 
-  outputElement1.innerText = url;
-  return url;
-};
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", weatherUrl);
+  xhr.responseType = "json";
 
-const url = getWeatherURL("Halmstad");
+  xhr.onload = function () {
+    if (xhr.status != 200) {
+      alert(`ERROR: ${xhr.status} (${xhr.statusText})`);
+    } else {
+      console.log(xhr.status + " " + xhr.statusText);
+      console.log(xhr.response);
+    }
+  };
+
+  xhr.send();
+}
+
+{
+  let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
+
+  venueUrl.searchParams.append(
+    "client_id",
+    "WK1U1RIWEUBBVPLNBDFQHOSRAB4NSORTX5MCFWLYPVR1FJEM"
+  );
+  venueUrl.searchParams.append(
+    "client_secret",
+    "TO3WZEAX252K1EPRJYPOAKWPBLJQSHH4XOJO0DOFPXEOADQT"
+  );
+  venueUrl.searchParams.append("near", "Huntingburg");
+  venueUrl.searchParams.append("limit", "1");
+  venueUrl.searchParams.append("v", "20210210");
+
+  document.querySelector("#venuesUrl").innerText = venueUrl;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", venueUrl);
+  xhr.responseType = "json";
+
+  xhr.onload = function () {
+    console.log(xhr.status + " " + xhr.statusText);
+    console.log(xhr.response);
+  };
+
+  let props = venueUrl.searchParams.entries();
+
+  for (const [k, v] of props) {
+    console.log(k + ": " + v);
+  }
+  xhr.send();
+}
