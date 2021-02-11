@@ -25,7 +25,7 @@
   xhr.send();
 }
 
-{
+getVenueUrl = function () {
   let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
 
   venueUrl.searchParams.append(
@@ -37,7 +37,7 @@
     "TO3WZEAX252K1EPRJYPOAKWPBLJQSHH4XOJO0DOFPXEOADQT"
   );
   venueUrl.searchParams.append("near", "Huntingburg");
-  venueUrl.searchParams.append("limit", "1");
+  venueUrl.searchParams.append("limit", "10");
   venueUrl.searchParams.append("v", "20210210");
 
   document.querySelector("#venuesUrl").innerText = venueUrl;
@@ -57,4 +57,4 @@
     console.log(k + ": " + v);
   }
   xhr.send();
-}
+};
