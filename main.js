@@ -25,7 +25,7 @@
   xhr.send();
 }
 
-getVenueUrl = function () {
+{
   let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
 
   venueUrl.searchParams.append(
@@ -37,7 +37,7 @@ getVenueUrl = function () {
     "TO3WZEAX252K1EPRJYPOAKWPBLJQSHH4XOJO0DOFPXEOADQT"
   );
   venueUrl.searchParams.append("near", "Huntingburg");
-  venueUrl.searchParams.append("limit", "10");
+  venueUrl.searchParams.append("limit", "3");
   venueUrl.searchParams.append("v", "20210210");
 
   document.querySelector("#venuesUrl").innerText = venueUrl;
@@ -49,12 +49,15 @@ getVenueUrl = function () {
   xhr.onload = function () {
     console.log(xhr.status + " " + xhr.statusText);
     console.log(xhr.response);
+    console.log(xhr.response.response.groups[0].items[0].venue.name);
+    console.log(xhr.response.response.groups[0].items[1].venue.name);
+    console.log(xhr.response.response.groups[0].items[2].venue.name);
   };
 
-  let props = venueUrl.searchParams.entries();
+  // let props = venueUrl.searchParams.entries();
 
-  for (const [k, v] of props) {
-    console.log(k + ": " + v);
-  }
+  // for (const [k, v] of props) {
+  //   console.log(k + ": " + v);
+  // }
   xhr.send();
-};
+}
