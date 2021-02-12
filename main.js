@@ -40,7 +40,7 @@
   venueUrl.searchParams.append("limit", "3");
   venueUrl.searchParams.append("v", "20210210");
 
-  document.querySelector("#venuesUrl").innerText = venueUrl;
+  //document.querySelector("#venuesUrl1").innerText = venueUrl;
 
   let xhr = new XMLHttpRequest();
   xhr.open("GET", venueUrl);
@@ -52,6 +52,9 @@
     console.log(xhr.response.response.groups[0].items[0].venue.name);
     console.log(xhr.response.response.groups[0].items[1].venue.name);
     console.log(xhr.response.response.groups[0].items[2].venue.name);
+
+    //document.querySelector("venuesUrl1").innerText =
+    //xhr.response.response.groups[0].items[0].venue.name;
   };
 
   // let props = venueUrl.searchParams.entries();
