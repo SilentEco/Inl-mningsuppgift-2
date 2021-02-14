@@ -74,5 +74,9 @@ getVenueInfo = function () {
   xhr.send();
 };
 
-getWeatherInfo();
-getVenueInfo();
+let search = document.querySelector("#searchBtn");
+
+search.addEventListener("click", function () {
+  getWeatherInfo();
+  getVenueInfo();
+});
