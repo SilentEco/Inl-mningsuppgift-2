@@ -21,7 +21,6 @@
       console.log(xhr.response);
     }
   };
-
   xhr.send();
 }
 
@@ -40,7 +39,7 @@
   venueUrl.searchParams.append("limit", "3");
   venueUrl.searchParams.append("v", "20210210");
 
-  //document.querySelector("#venuesUrl1").innerText = venueUrl;
+  document.querySelector("#venuesUrl1").innerText = venueUrl;
 
   let xhr = new XMLHttpRequest();
   xhr.open("GET", venueUrl);
