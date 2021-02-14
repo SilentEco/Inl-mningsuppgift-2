@@ -10,26 +10,6 @@ getWeatherUrl = function (cityName) {
   return weatherUrl;
 };
 
-getWeatherInfo = function () {
-  let url = getWeatherUrl("Huntingburg"); //<< ---- SÖKRUTA
-
-  let xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
-  xhr.responseType = "json";
-
-  xhr.onload = function () {
-    if (xhr.status != 200) {
-      alert(`ERROR: ${xhr.status} (${xhr.statusText})`);
-    } else {
-      console.log(xhr.status + " " + xhr.statusText);
-      console.log(xhr.response);
-    }
-
-    document.querySelector("#weatherToday").innerText = xhr.response.main.temp;
-  };
-
-  xhr.send();
-};
 getVenueUrl = function () {
   let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
 
@@ -45,10 +25,39 @@ getVenueUrl = function () {
   venueUrl.searchParams.append("limit", "3");
   venueUrl.searchParams.append("v", "20210214");
   venueUrl.searchParams.append("section", "food");
+
+  return venueUrl;
 };
-getVenueInfo = function () {
+
+getWeatherInfo = function () {
+  let url = getWeatherUrl("Huntingburg"); //<< ---- SÖKRUTA
+
   let xhr = new XMLHttpRequest();
-  xhr.open("GET", venueUrl);
+  xhr.open("GET", url);
+  xhr.responseType = "json";
+
+  xhr.onload = function () {
+    if (xhr.status != 200) {
+      alert(`ERROR: ${xhr.status} (${xhr.statusText})`);
+    } else {
+      console.log(xhr.status + " " + xhr.statusText);
+      console.log(xhr.response);
+    }
+
+    document.querySelector("#locationName").innerText = xhr.response.name;
+    document.querySelector(
+      "#weatherToday"
+    ).innerText = `Temp: ${xhr.response.main.temp}°C`;
+  };
+
+  xhr.send();
+};
+
+getVenueInfo = function () {
+  let url = getVenueUrl();
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
   xhr.responseType = "json";
 
   xhr.onload = function () {
@@ -62,14 +71,8 @@ getVenueInfo = function () {
     document.querySelector("#venuesUrl3").innerText =
       xhr.response.response.groups[0].items[2].venue.name;
   };
-
-  // let props = venueUrl.searchParams.entries();
-
-  // for (const [k, v] of props) {
-  //   console.log(k + ": " + v);
-  // }
-
   xhr.send();
 };
 
 getWeatherInfo();
+getVenueInfo();

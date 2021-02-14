@@ -3,6 +3,14 @@
   padding: 0px;
 }
 
+p {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
 header {
   margin: 0px auto;
   display: flex;
