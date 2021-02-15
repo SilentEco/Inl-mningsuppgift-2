@@ -3,6 +3,16 @@
   padding: 0px;
 }
 
+h1 img {
+  width: 500px;
+  margin-top: 170px;
+}
+
+body {
+  background-image: url(/IMG/backimg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 p {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
@@ -12,40 +22,48 @@ p {
 }
 
 header {
-  margin: 0px auto;
+  margin: 0px 30px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   width: 1000px;
   height: 80px;
-
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
 }
 
 nav {
+  flex-direction: column;
   margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 1000px;
   height: 80px;
-
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
 }
 
-nav input {
-  width: 220px;
-  height: 30px;
+nav #citySearch {
+  width: 300px;
+  height: 40px;
   border: 2px solid black;
   border-radius: 5px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: gold;
+  box-shadow: 2px 1px lightslategray;
+
+  font-size: large;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-main {
+#searchBtn {
+  align-content: center;
+  align-items: center;
+  margin-top: 7px;
+  width: 150px;
+  height: 40px;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 section {
@@ -60,9 +78,22 @@ section > div {
   border-color: black;
   border-style: solid;
 
+  background-color: gold;
+  box-shadow: 3px 4px lightslategray;
+
   width: 300px;
   height: 200px;
 }
 
-footer {
+section > div > p {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 1px 3px 5px lightsteelblue;
+  bleed: inherit;
+  text-align: center;
 }

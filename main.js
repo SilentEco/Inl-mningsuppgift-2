@@ -22,7 +22,7 @@ function getWeatherInfo() {
 
   xhr.onload = function () {
     if (xhr.status != 200) {
-      alert(`ERROR: ${xhr.status} ${xhr.statusText})`);
+      alert("ERROR: City does not exist, try again! \n\nTip: Check spelling.");
     } else {
       console.log(xhr.status + " " + xhr.statusText);
       console.log(xhr.response);
@@ -50,7 +50,7 @@ function getVenueUrl(cityName) {
   );
   venueUrl.searchParams.append("near", cityName);
   venueUrl.searchParams.append("limit", "3");
-  venueUrl.searchParams.append("v", "20210214");
+  venueUrl.searchParams.append("v", "20210215");
   venueUrl.searchParams.append("section", "food");
 
   return venueUrl;
