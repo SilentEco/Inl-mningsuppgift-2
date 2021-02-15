@@ -1,4 +1,6 @@
-getWeatherUrl = function (cityName) {
+let searchBox = document.getElementById("citySearch");
+
+function getWeatherUrl(cityName) {
   let weatherUrl = new URL("https://api.openweathermap.org/data/2.5/weather");
 
   weatherUrl.searchParams.set("q", cityName);
@@ -8,29 +10,11 @@ getWeatherUrl = function (cityName) {
   weatherUrl.searchParams.set("lang", "se");
 
   return weatherUrl;
-};
+}
 
-getVenueUrl = function () {
-  let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
-
-  venueUrl.searchParams.append(
-    "client_id",
-    "WK1U1RIWEUBBVPLNBDFQHOSRAB4NSORTX5MCFWLYPVR1FJEM"
-  );
-  venueUrl.searchParams.append(
-    "client_secret",
-    "TO3WZEAX252K1EPRJYPOAKWPBLJQSHH4XOJO0DOFPXEOADQT"
-  );
-  venueUrl.searchParams.append("near", "Umeå");
-  venueUrl.searchParams.append("limit", "3");
-  venueUrl.searchParams.append("v", "20210214");
-  venueUrl.searchParams.append("section", "food");
-
-  return venueUrl;
-};
-
-getWeatherInfo = function () {
-  let url = getWeatherUrl("Huntingburg"); //<< ---- SÖKRUTA
+function getWeatherInfo() {
+  let city = searchBox.value;
+  let url = getWeatherUrl(city);
 
   let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
@@ -38,7 +22,7 @@ getWeatherInfo = function () {
 
   xhr.onload = function () {
     if (xhr.status != 200) {
-      alert(`ERROR: ${xhr.status} (${xhr.statusText})`);
+      alert(`ERROR: ${xhr.status} ${xhr.statusText})`);
     } else {
       console.log(xhr.status + " " + xhr.statusText);
       console.log(xhr.response);
@@ -51,10 +35,30 @@ getWeatherInfo = function () {
   };
 
   xhr.send();
-};
+}
 
-getVenueInfo = function () {
-  let url = getVenueUrl();
+function getVenueUrl(cityName) {
+  let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
+
+  venueUrl.searchParams.append(
+    "client_id",
+    "WK1U1RIWEUBBVPLNBDFQHOSRAB4NSORTX5MCFWLYPVR1FJEM"
+  );
+  venueUrl.searchParams.append(
+    "client_secret",
+    "TO3WZEAX252K1EPRJYPOAKWPBLJQSHH4XOJO0DOFPXEOADQT"
+  );
+  venueUrl.searchParams.append("near", cityName);
+  venueUrl.searchParams.append("limit", "3");
+  venueUrl.searchParams.append("v", "20210214");
+  venueUrl.searchParams.append("section", "food");
+
+  return venueUrl;
+}
+
+function getVenueInfo() {
+  let city = searchBox.value;
+  let url = getVenueUrl(city);
 
   let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
@@ -72,7 +76,7 @@ getVenueInfo = function () {
       xhr.response.response.groups[0].items[2].venue.name;
   };
   xhr.send();
-};
+}
 
 let search = document.querySelector("#searchBtn");
 
