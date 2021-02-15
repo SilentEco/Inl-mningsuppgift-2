@@ -1,5 +1,7 @@
 let searchBox = document.getElementById("citySearch");
 
+// En funktion som skapar en url. Den tar in en parameter som defineras av sökrutan på hemsidan.
+// Jag fyller i urelen med nödvändig data för att sökningen ska bli bra och fungera.
 function getWeatherUrl(cityName) {
   let weatherUrl = new URL("https://api.openweathermap.org/data/2.5/weather");
 
@@ -12,14 +14,18 @@ function getWeatherUrl(cityName) {
   return weatherUrl;
 }
 
+// En funktion som använder den nyskapta urelen och hämtar ut data.
 function getWeatherInfo() {
   let city = searchBox.value;
   let url = getWeatherUrl(city);
 
+  // Jag gör en HTTP request med den nyskapade urelen.
   let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.responseType = "json";
 
+  // Jag ser till att statusen är ok och att det finns en koppling
+  // Om statusen är allt utom OK (200) meddelar hemsidan att något gått snett.
   xhr.onload = function () {
     if (xhr.status != 200) {
       alert("ERROR: City does not exist, try again! \n\nTip: Check spelling.");
@@ -28,6 +34,7 @@ function getWeatherInfo() {
       console.log(xhr.response);
     }
 
+    // Jag fyller i hemsidan med dagens temperatur och vart vi sökt.
     document.querySelector("#locationName").innerText = xhr.response.name;
     document.querySelector(
       "#weatherToday"
@@ -36,6 +43,16 @@ function getWeatherInfo() {
 
   xhr.send();
 }
+
+/*
+
+  Koden nedan fungerar fungerar snarlikt som koden ovan.
+
+  Vi bygger en url på precis samma sätt med nya parametrar som krävs för att vi ska få kalla på API:n.
+
+  Vi hämtar ur information och fyller in hemsidan med top 3 restauranger på hemsidan.
+
+*/
 
 function getVenueUrl(cityName) {
   let venueUrl = new URL("https://api.foursquare.com/v2/venues/explore");
@@ -78,8 +95,8 @@ function getVenueInfo() {
   xhr.send();
 }
 
+// Detta kallar på det två funktionerna när man vill söka på en stad.
 let search = document.querySelector("#searchBtn");
-
 search.addEventListener("click", function () {
   getWeatherInfo();
   getVenueInfo();
