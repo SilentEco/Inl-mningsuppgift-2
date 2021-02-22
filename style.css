@@ -3,9 +3,9 @@
   padding: 0px;
 }
 
-h1 img {
+h1 > img {
+  margin-top: 200px;
   width: 500px;
-  margin-top: 170px;
 }
 
 body {
@@ -27,17 +27,15 @@ header {
   align-items: center;
   justify-content: left;
   width: 1000px;
-  height: 80px;
+  height: 30px;
 }
 
 nav {
   flex-direction: column;
-  margin: 10px auto;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1000px;
-  height: 80px;
 }
 
 nav #citySearch {
@@ -55,6 +53,14 @@ nav #citySearch {
 
   font-size: large;
   font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+nav > div {
+  margin-top: 20px;
+  border: solid black 2px;
+  background-color: white;
+  width: 300px;
+  display: flex;
 }
 
 #searchBtn {
@@ -96,4 +102,8 @@ h2 {
   text-shadow: 1px 3px 5px lightsteelblue;
   bleed: inherit;
   text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
 }

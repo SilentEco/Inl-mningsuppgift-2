@@ -22,15 +22,22 @@
     <nav>
       <input id="citySearch" type="search" placeholder="SEARCH FOR A CITY" />
       <button id="searchBtn">SEARCH</button>
+      <div>
+      <input type="checkbox" id="showWeather-checkbox" checked name="leftBtn"> Show weather</input>
+      <input type="checkbox" id="showVenues-checkbox" checked name="rightBtn"> Show venues</input>
+    </div>
     </nav>
 
     <main>
+      <div id="weatherDiv" class="">
       <section>
         <div id="weather">
           <p id="locationName">Location Name</p>
           <p id="weatherToday">Todays weather</p>
         </div>
       </section>
+    </div>
+      <div id="venueDiv" class="">
       <h2>TOP 3 RESTURANTS IN THE AREA</h2>
       <section>
         <div id="venues1">
@@ -43,6 +50,7 @@
           <p id="venuesUrl3">Todays venues</p>
         </div>
       </section>
+    </div>
     </main>
   </body>
 </html>

@@ -101,3 +101,13 @@ search.addEventListener("click", function () {
   getWeatherInfo();
   getVenueInfo();
 });
+
+document.getElementById("showWeather-checkbox").onchange = function () {
+  let wDiv = document.getElementById("weatherDiv");
+  wDiv.classList.toggle("hidden");
+};
+
+document.getElementById("showVenues-checkbox").onchange = function () {
+  let vDiv = document.getElementById("venueDiv");
+  vDiv.classList.toggle("hidden");
+};
